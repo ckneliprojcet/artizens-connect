@@ -1,5 +1,5 @@
 
-import React, { ReactNode } from 'react';
+import React, { ReactNode, CSSProperties } from 'react';
 import { cn } from '@/lib/utils';
 
 interface BlurContainerProps {
@@ -8,6 +8,7 @@ interface BlurContainerProps {
   intensity?: 'light' | 'medium' | 'heavy';
   border?: boolean;
   hover?: boolean;
+  style?: CSSProperties;
 }
 
 const BlurContainer = ({
@@ -16,6 +17,7 @@ const BlurContainer = ({
   intensity = 'medium',
   border = true,
   hover = false,
+  style,
 }: BlurContainerProps) => {
   const intensityMap = {
     light: 'backdrop-blur-sm bg-white/5 dark:bg-black/5',
@@ -32,6 +34,7 @@ const BlurContainer = ({
         hover && 'hover:bg-white/20 dark:hover:bg-black/30 hover:shadow-lg',
         className
       )}
+      style={style}
     >
       {children}
     </div>
