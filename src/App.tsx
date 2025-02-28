@@ -8,6 +8,8 @@ import Index from "./pages/Index";
 import Explore from "./pages/Explore";
 import Marketplace from "./pages/Marketplace";
 import NFTDetails from "./pages/NFTDetails";
+import About from "./pages/About";
+import Profile from "./pages/Profile";
 import NotFound from "./pages/NotFound";
 
 const queryClient = new QueryClient();
@@ -23,6 +25,8 @@ const App = () => (
           <Route path="/explore" element={<Explore />} />
           <Route path="/marketplace" element={<Marketplace />} />
           <Route path="/content/:id" element={<NFTDetails />} />
+          <Route path="/about" element={<About />} />
+          <Route path="/profile" element={<Profile />} />
           {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
           <Route path="*" element={<NotFound />} />
         </Routes>
