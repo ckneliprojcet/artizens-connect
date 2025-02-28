@@ -1,4 +1,3 @@
-
 import React, { useState } from "react";
 import { UserRound, Mail, Phone, MapPin, Users, Pencil, Camera, Wallet } from "lucide-react";
 import BlurContainer from "@/components/ui/BlurContainer";
@@ -40,7 +39,10 @@ const Profile = () => {
     if (file) {
       const reader = new FileReader();
       reader.onloadend = () => {
-        setFormData(prev => ({ ...prev, profilePicture: reader.result }));
+        const result = reader.result;
+        if (typeof result === 'string') {
+          setFormData(prev => ({ ...prev, profilePicture: result }));
+        }
       };
       reader.readAsDataURL(file);
     }
