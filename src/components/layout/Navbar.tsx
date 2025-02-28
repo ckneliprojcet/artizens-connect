@@ -1,13 +1,16 @@
 
 import React, { useState, useEffect } from 'react';
 import { Link, useLocation } from 'react-router-dom';
-import { Menu, X, Search, Upload, Bell } from 'lucide-react';
+import { Menu, X, Search, Upload, Bell, Wallet } from 'lucide-react';
 import BlurContainer from '../ui/BlurContainer';
 import { cn } from '@/lib/utils';
+import { toast } from 'sonner';
 
 const Navbar = () => {
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+  const [isWalletConnected, setIsWalletConnected] = useState(false);
+  const [walletAddress, setWalletAddress] = useState('');
   const location = useLocation();
   
   useEffect(() => {
@@ -32,6 +35,33 @@ const Navbar = () => {
   
   const isActive = (path: string) => {
     return location.pathname === path;
+  };
+  
+  const connectWallet = async () => {
+    // This is a mock implementation - in a real app, this would use a web3 library like ethers.js
+    try {
+      if (window.ethereum) {
+        const accounts = await window.ethereum.request({ method: 'eth_requestAccounts' });
+        if (accounts.length > 0) {
+          setIsWalletConnected(true);
+          // Truncate wallet address for display
+          const address = accounts[0];
+          setWalletAddress(`${address.substring(0, 6)}...${address.substring(address.length - 4)}`);
+          toast.success("Wallet connected successfully!");
+        }
+      } else {
+        toast.error("Ethereum wallet not detected. Please install a wallet like MetaMask.");
+      }
+    } catch (error) {
+      console.error("Error connecting wallet:", error);
+      toast.error("Failed to connect wallet. Please try again.");
+    }
+  };
+
+  const disconnectWallet = () => {
+    setIsWalletConnected(false);
+    setWalletAddress('');
+    toast.info("Wallet disconnected.");
   };
   
   return (
@@ -93,6 +123,24 @@ const Navbar = () => {
             <Bell className="h-5 w-5" />
             <span className="absolute right-0 top-0 flex h-2 w-2 rounded-full bg-primary"></span>
           </button>
+
+          {isWalletConnected ? (
+            <div 
+              className="flex cursor-pointer items-center rounded-full bg-primary/10 px-4 py-2 text-sm font-medium text-primary"
+              onClick={disconnectWallet}
+            >
+              <Wallet className="mr-2 h-4 w-4" />
+              {walletAddress}
+            </div>
+          ) : (
+            <button 
+              className="flex items-center rounded-full bg-primary px-4 py-2 text-sm font-medium text-primary-foreground hover:bg-primary/90"
+              onClick={connectWallet}
+            >
+              <Wallet className="mr-2 h-4 w-4" />
+              Connect Wallet
+            </button>
+          )}
           
           <div className="h-8 w-8 cursor-pointer overflow-hidden rounded-full bg-secondary">
             <img
@@ -165,7 +213,25 @@ const Navbar = () => {
           </nav>
           
           <div className="mt-10 space-y-4">
-            <button className="flex w-full items-center justify-center gap-2 rounded-full bg-primary px-6 py-3 font-medium text-primary-foreground">
+            {isWalletConnected ? (
+              <button 
+                className="flex w-full items-center justify-center gap-2 rounded-full bg-primary/10 px-6 py-3 font-medium text-primary"
+                onClick={disconnectWallet}
+              >
+                <Wallet className="h-5 w-5" />
+                {walletAddress}
+              </button>
+            ) : (
+              <button 
+                className="flex w-full items-center justify-center gap-2 rounded-full bg-primary px-6 py-3 font-medium text-primary-foreground"
+                onClick={connectWallet}
+              >
+                <Wallet className="h-5 w-5" />
+                Connect Wallet
+              </button>
+            )}
+            
+            <button className="flex w-full items-center justify-center gap-2 rounded-full bg-secondary px-6 py-3 font-medium">
               <Upload className="h-5 w-5" />
               Upload Content
             </button>

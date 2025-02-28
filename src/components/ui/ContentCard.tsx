@@ -96,7 +96,7 @@ const ContentCard = ({
                 alt={creator.name}
                 className="h-8 w-8 rounded-full object-cover ring-2 ring-white/10"
               />
-              <Link to={`/creator/${creator.id}`} className="text-sm font-medium hover:text-primary">
+              <Link to={`/creator/${creator.id}`} onClick={(e) => e.stopPropagation()} className="text-sm font-medium hover:text-primary">
                 {creator.name}
               </Link>
             </div>
@@ -129,7 +129,7 @@ const ContentCard = ({
           to={`/content/${id}`} 
           className="w-full rounded-full bg-primary px-4 py-2 text-center text-sm font-medium text-white transition-colors hover:bg-primary/90"
         >
-          {price ? `Buy for ${price} KAIA` : 'View Content'}
+          {price && isNFT ? `Buy for ${price} KAIA` : 'View Content'}
         </Link>
       </div>
     </div>
