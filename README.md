@@ -1,69 +1,118 @@
-# Welcome to your Lovable project
+# CreatorsHub DApp
 
-## Project info
+CreatorsHub is a decentralized application (DApp) that enables creators to upload and share various types of content (videos, music, art, blogs, etc.) directly on the platform. By leveraging the Kaia blockchain and decentralized storage solutions like IPFS, CreatorsHub ensures content immutability, security, and fair monetization.
 
-**URL**: https://lovable.dev/projects/7d974526-e2b1-408c-a427-c1296f8427c0
+## Features
 
-## How can I edit this code?
+### 🔹 Content Upload & Sharing
+- Creators can upload and share various content types, including:
+  - Videos
+  - Music
+  - Digital Art
+  - Blogs
+- All content is securely stored on the Kaia blockchain or IPFS.
 
-There are several ways of editing your application.
+### 🔹 Microtransactions
+- Fans can pay creators using Kaia tokens or other supported cryptocurrencies.
+- Access to exclusive content can be granted via pay-per-view or one-time purchases.
 
-**Use Lovable**
+### 🔹 Subscription Model
+- Creators can offer subscription-based access to premium content.
+- Fans can subscribe using Kaia tokens, ensuring a recurring revenue stream for creators.
 
-Simply visit the [Lovable Project](https://lovable.dev/projects/7d974526-e2b1-408c-a427-c1296f8427c0) and start prompting.
+### 🔹 Donations & Tips
+- Fans can directly tip their favorite creators using Kaia tokens.
+- Supporters can contribute freely without the need for intermediaries.
 
-Changes made via Lovable will be committed automatically to this repo.
+### 🔹 NFT Marketplace
+- Creators can mint their content as NFTs (e.g., digital art, music, videos).
+- NFTs can be listed and sold in an integrated marketplace.
+- Ownership and provenance of digital assets are verified via smart contracts.
 
-**Use your preferred IDE**
+## Technology Stack
 
-If you want to work locally using your own IDE, you can clone this repo and push changes. Pushed changes will also be reflected in Lovable.
+- **Frontend**: React.js (Next.js optional), Web3.js
+- **Blockchain**: Kaia Blockchain, Solidity Smart Contracts
+- **Storage**: IPFS / Filecoin for decentralized content storage
+- **Wallet Integration**: MetaMask
+- **Backend (Optional)**: Node.js, Express.js, MongoDB for user authentication and content management
 
-The only requirement is having Node.js & npm installed - [install with nvm](https://github.com/nvm-sh/nvm#installing-and-updating)
+## Installation & Setup
 
-Follow these steps:
+### Prerequisites
+- [Node.js](https://nodejs.org/)
+- [MetaMask](https://metamask.io/) extension
+- [Kaia Blockchain Wallet](https://kaia.io/)
+- IPFS CLI (optional, if running a local node)
 
+### Steps to Run the Project
+
+1. **Clone the Repository**
 ```sh
-# Step 1: Clone the repository using the project's Git URL.
-git clone <YOUR_GIT_URL>
-
-# Step 2: Navigate to the project directory.
-cd <YOUR_PROJECT_NAME>
-
-# Step 3: Install the necessary dependencies.
-npm i
-
-# Step 4: Start the development server with auto-reloading and an instant preview.
-npm run dev
+ git clone https://github.com/your-username/CreatorsHub.git
+ cd CreatorsHub
 ```
 
-**Edit a file directly in GitHub**
+2. **Install Dependencies**
+```sh
+ npm install
+```
 
-- Navigate to the desired file(s).
-- Click the "Edit" button (pencil icon) at the top right of the file view.
-- Make your changes and commit the changes.
+3. **Set Up Environment Variables**
+Create a `.env` file in the root directory and add the required environment variables:
+```sh
+REACT_APP_INFURA_PROJECT_ID=your_infura_project_id
+REACT_APP_KAIA_RPC_URL=https://rpc.kaia.io
+REACT_APP_CONTRACT_ADDRESS=your_smart_contract_address
+```
 
-**Use GitHub Codespaces**
+4. **Start the Development Server**
+```sh
+ npm run start
+```
 
-- Navigate to the main page of your repository.
-- Click on the "Code" button (green button) near the top right.
-- Select the "Codespaces" tab.
-- Click on "New codespace" to launch a new Codespace environment.
-- Edit files directly within the Codespace and commit and push your changes once you're done.
+5. **Deploy Smart Contracts (Optional)**
+```sh
+ truffle migrate --network kaia
+```
 
-## What technologies are used for this project?
+## Smart Contracts Overview
 
-This project is built with .
+### CreatorsHub Smart Contract
+The contract handles:
+- Content uploads and storage references
+- Payment distribution for microtransactions
+- Subscription management
+- NFT minting and trading
 
-- Vite
-- TypeScript
-- React
-- shadcn-ui
-- Tailwind CSS
+### Deployment on Kaia Blockchain
+- The smart contracts are deployed on the Kaia blockchain.
+- Interactions happen through Web3.js and MetaMask.
 
-## How can I deploy this project?
+## Usage Guide
 
-Simply open [Lovable](https://lovable.dev/projects/7d974526-e2b1-408c-a427-c1296f8427c0) and click on Share -> Publish.
+1. **Connect Wallet**: Users must connect their MetaMask wallet to interact with the DApp.
+2. **Upload Content**: Creators can upload videos, music, blogs, and art.
+3. **Monetize Content**: Set up microtransactions, subscriptions, and NFT sales.
+4. **Engage with Fans**: Fans can purchase, subscribe, or tip creators.
+5. **Explore NFTs**: Users can buy, sell, and trade NFTs in the marketplace.
 
-## I want to use a custom domain - is that possible?
+## Contributing
 
-We don't support custom domains (yet). If you want to deploy your project under your own domain then we recommend using Netlify. Visit our docs for more details: [Custom domains](https://docs.lovable.dev/tips-tricks/custom-domain/)
+We welcome contributions! Follow these steps:
+1. Fork the repository.
+2. Create a feature branch.
+3. Commit your changes.
+4. Push to your fork and submit a pull request.
+
+## License
+
+This project is licensed under the MIT License.
+
+## Contact
+
+For any inquiries, reach out via:
+- Email: support@creatorshub.io
+- Discord: [Join our community](https://discord.gg/creatorshub)
+- Twitter: [@CreatorsHub](https://twitter.com/CreatorsHub)
+
